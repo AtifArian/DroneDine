@@ -1,0 +1,366 @@
+.login-page {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.login-page .overlap-wrapper {
+  background-color: #ffffff;
+  width: 1920px;
+  height: 1080px;
+}
+
+.login-page .overlap {
+  position: relative;
+  height: 1080px;
+}
+
+.login-page .rectangle {
+  width: 960px;
+  height: 833px;
+  background-color: #0096ffb8; 
+  position: absolute;
+}
+
+.login-page .right { /* Right Box */
+  position: absolute;
+  width: 49.4%;
+  height: 835px;
+  top: 0;
+  left: 960px;
+  background-color: rgba(245, 245, 220, 0.514);
+  border-radius: 5px;
+}
+
+.login-page .navigation-footer {/* Footer */
+  position: absolute;
+  width: 105%;
+  height: 246px;
+  top: 833px;
+  left: -100px;
+  background-color: #0096ffb8;
+  overflow: hidden;
+}
+
+.login-page .items {
+  display: flex;
+  flex-direction: column;
+  width: 187px;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--variable-collection-spacing-s);
+  position: absolute;
+  top: 48px;
+  left: 1056px;
+}
+
+.login-page .frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.login-page .text-wrapper {
+  position: relative;
+  flex: auto;
+  margin-top: -1.00px;
+  font-family: var(--small-text-font-family);
+  font-weight: var(--small-text-font-weight);
+  color: #000000;
+  font-size: var(--small-text-font-size);
+  letter-spacing: var(--small-text-letter-spacing);
+  line-height: var(--small-text-line-height);
+  font-style: var(--small-text-font-style);
+}
+
+.login-page .div {
+  position: relative;
+  align-self: stretch;
+  font-family: var(--small-text-font-family);
+  font-weight: var(--small-text-font-weight);
+  color: #000000;
+  font-size: var(--small-text-font-size);
+  letter-spacing: var(--small-text-letter-spacing);
+  line-height: var(--small-text-line-height);
+  font-style: var(--small-text-font-style);
+}
+
+.login-page .items-2 {
+  left: 1355px;
+  display: flex;
+  flex-direction: column;
+  width: 187px;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--variable-collection-spacing-s);
+  position: absolute;
+  top: 48px;
+}
+
+.login-page .text-wrapper-2 {
+  position: relative;
+  align-self: stretch;
+  margin-top: -1.00px;
+  font-family: var(--small-text-font-family);
+  font-weight: var(--small-text-font-weight);
+  color: #000000;
+  font-size: var(--small-text-font-size);
+  letter-spacing: var(--small-text-letter-spacing);
+  line-height: var(--small-text-line-height);
+  font-style: var(--small-text-font-style);
+}
+
+.login-page .items-3 {
+  left: 1653px;
+  display: flex;
+  flex-direction: column;
+  width: 187px;
+  align-items: flex-end;
+  justify-content: center;
+  gap: var(--variable-collection-spacing-s);
+  position: absolute;
+  top: 48px;
+}
+
+.login-page .social-icons {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--variable-collection-spacing-XS);
+  position: absolute;
+  top: 176px;
+  left: 99px;
+}
+
+.login-page .buttons-icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.login-page .icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  top: 8px;
+  left: 8px;
+}
+
+
+
+
+.login-page .divider {
+  position: absolute;
+  width: 1280px;
+  height: 1px;
+  top: 0;
+  left: 80px;
+  object-fit: cover;
+}
+
+.login-page .text-wrapper-3 {
+  position: absolute;
+  height: 24px;
+  top: 44px;
+  left: 120px;
+  font-family: var(--small-text-font-family);
+  font-weight: var(--small-text-font-weight);
+  color: #000000;
+  font-size: var(--small-text-font-size);
+  letter-spacing: var(--small-text-letter-spacing);
+  line-height: var(--small-text-line-height);
+  white-space: nowrap;
+  font-style: var(--small-text-font-style);
+}
+
+.login-page .overlap-group-wrapper {
+  position: absolute;
+  width: 331px;
+  height: 120px;
+  top: 100px;
+  left: 446px;
+}
+
+.login-page .overlap-group {
+  position: relative;
+  height: 120px;
+  top: -1px;
+}
+
+.login-page .p {
+  position: absolute;
+  height: 30px;
+  top: 90px;
+  left: 0;
+  font-family: "Inter-Black", Helvetica;
+  font-weight: 900;
+  color: #ffffff;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+.login-page .text-wrapper-4 {
+  position: absolute;
+  width: 350px;
+  height: 97px;
+  top: 0;
+  left: 0;
+  font-family: "Inconsolata-Black", Helvetica;
+  font-weight: 900;
+  color: #ffffff;
+  font-size: 50px;
+  letter-spacing: 0;
+  line-height: 75px;
+}
+
+
+
+.login-page .frame-2 {
+  position: relative;
+  width: 405px;
+  height: 390px;
+  top: 100px;
+  left: 183px;
+}
+
+.login-page .text-wrapper-5 {
+  position: absolute;
+  width: 159px;
+  height: 24px;
+  top: 366px;
+  left: 1px;
+  font-family: "Inter-Medium", Helvetica;
+  font-weight: 500;
+  color: #0096ffb8;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.login-page .overlap-group-2 {
+  position: absolute;
+  width: 404px;
+  height: 59px;
+  top: 281px;
+  left: px;
+}
+
+.login-page .rectangle-2 {
+  width: 404px;
+  height: 59px;
+  background-color: #0096ffb8;
+  border-radius: 5px;
+  position: absolute;
+  top: -2px;
+  left: -2px;
+}
+
+.login-page .text-wrapper-6 {
+  position: absolute;
+  width: 404px;
+  height: 59px;
+  top: 0;
+  left: 0;
+  font-family: var(--body-text-font-family);
+  font-weight: var(--body-text-font-weight);
+  color: #ffffff;
+  font-size: var(--body-text-font-size);
+  text-align: center;
+  padding-top: 15px;
+  letter-spacing: var(--body-text-letter-spacing);
+  line-height: var(--body-text-line-height);
+  font-style: var(--body-text-font-style);
+}
+
+.login-page .overlap-2 {
+  position: absolute;
+  width: 404px;
+  height: 59px;
+  top: 158px;
+  left: 0px;
+}
+
+.login-page .rectangle-3 {
+  width: 404px;
+  height: 59px;
+  background-color: #ffffff;
+  position: absolute;
+  top: 0px;
+  left: 0;
+}
+
+.login-page .text-wrapper-7 {
+  position: absolute;
+  width: 404px;
+  height: 59px;
+  top: 0;
+  left: 0px;
+  opacity: 0.2;
+  font-family: var(--body-text-font-family);
+  font-weight: var(--body-text-font-weight);
+  color: #000000;
+  font-size: var(--body-text-font-size);
+  display: flex; /* Enable flexbox */
+  align-items: center; /* Center vertically */
+  justify-content: flex-start; /* Adjust for horizontal alignment (if needed) */
+  padding-left: 10px; /* Add padding to move text slightly inside the box */
+}
+
+.login-page .overlap-3 {
+  position: absolute;
+  width: 405px;
+  height: 60px;
+  top: 49px;
+  left: 0;
+}
+
+.login-page .rectangle-4 {
+  width: 404px;
+  height: 59px;
+  background-color: #fffcfc;
+  position: absolute;
+  top: 1px;
+  left: 0;
+}
+
+.login-page .text-wrapper-9 { /* Log */
+  position: absolute;
+  width: 79px;
+  height: 30px;
+  top: 0px;
+  left: 1px;
+  font-family: var(--body-text-font-family);
+  font-weight: var(--body-text-font-weight);
+  color: #000000;
+  font-size: var(--body-text-font-size);
+  letter-spacing: var(--body-text-letter-spacing);
+  line-height: var(--body-text-line-height);
+  white-space: nowrap;
+  font-style: var(--body-text-font-style);
+}
+
+.login-page .text-wrapper-10 {
+  position: absolute;
+  width: 195px;
+  height: 24px;
+  top: 466px;
+  left: 1344px;
+  font-family: "Inter-Medium", Helvetica;
+  font-weight: 500;
+  color: #0096ffb8;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
