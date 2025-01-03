@@ -1,0 +1,73 @@
+/* Base Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+.rectangle {
+  width: 960px;
+  height: 100%;
+  background-color: #0096ffb8;
+  position: absolute;
+}
+
+.rectangle .desc {
+  position: absolute;
+  width: 350px;
+  height: 97px;
+  top: 90px;
+  left: 446px;
+  font-family: "Inconsolata-Black", Helvetica;
+  font-weight: 900;
+  color: #ffffff;
+  font-size: 50px;
+  letter-spacing: 0;
+  line-height: 75px;
+}
+
+.text2{
+  width: 500px;
+  height: 97px;
+  font-size: 20px;
+}
+
+.signup-page{
+  position: absolute;
+  width: 45%;
+  height: 100%;
+  top: 0;
+  left: 960px;
+  background-color: rgba(245, 245, 220, 0.514);
+  display: flex;
+}
+
+.signup-page .inputs {
+  width: 404px;
+  height: 59px;
+}
+
+.signup-page .info{
+  width: 700px;
+  height: 800px;
+  padding: 10px;
+}
+
+.signup-page .info .text3{
+  padding: 10px;
+}
+
+.signup-page .info .text4{
+  padding-left: 50%;
+  
+}
+
+form button {
+  width: 404px;
+  height: 59px;
+  top: auto;
+  left: 10px;
+  background-color: #0096ffb8;
+  border-radius: 5px;
+}
