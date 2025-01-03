@@ -43,6 +43,25 @@ body, html {
   display: flex;
 }
 
+.reset-page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(245, 245, 220, 0.514);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reset-page .text3{
+  width: 700px;
+  height: 800px;
+  padding: 10px;
+}
+
+
 .signup-page .inputs {
   width: 404px;
   height: 59px;
