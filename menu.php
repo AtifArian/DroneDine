@@ -32,7 +32,6 @@
             <input type="text" name="name" placeholder="Dish Name" required>
             <input type="text" name="categ" placeholder="Category" required>
             <input type="number" name="price" placeholder="Price" step="0.01" required>
-            <input type="number" name="discount" placeholder="Discount (%)" step="0.01">
             <button type="submit" name="add">Add Item</button>
         </form>
         <hr>
@@ -42,7 +41,7 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Discount</th>
+                <th>Action</th>
                 
             </tr>
             <?php

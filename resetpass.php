@@ -3,8 +3,8 @@
     include('Database.php');
     session_start();
 
-    //$stmt = $conn->prepare("UPDATE user  SET Pass = ?  WHERE E_mail = ?");
-    //$stmt->execute([$_POST["newpass"],$_SESSION['email']]);
+    $stmt = $conn->prepare("UPDATE user  SET Pass = ?  WHERE E_mail = ?");
+    $stmt->execute([$_POST["newpass"],$_SESSION['email']]);
 ?>
 
 <!DOCTYPE html>
