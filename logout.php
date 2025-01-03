@@ -1,6 +1,9 @@
-<?
+<?php
     //session_unset();
     //unset($_SESSION['email']);
+    //session_destroy();
+    session_start();
     session_destroy();
-    echo"done"
+    header("Location: Log_In.php");
+    exit;
 ?>

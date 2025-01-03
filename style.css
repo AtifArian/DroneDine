@@ -1,9 +1,12 @@
 .login-page {
-  background-color: #ffffff;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
+  flex-direction: column; /* Adjust to your needs (row/column) */
+  justify-content: center; /* Center children */
+  align-items: center; /* Align children */
+  gap: 20px; /* Spacing between children */
+  position: relative;
+  width: 100%; /* Full page width */
+  height: auto; /* Adjust to fit content */
 }
 
 .login-page .overlap-wrapper {
@@ -24,15 +27,16 @@
   position: absolute;
 }
 
-.login-page .right { /* Right Box */
+.login-page .right {
   position: absolute;
-  width: 49.4%;
+  width: calc(100% - 960px);
   height: 835px;
   top: 0;
-  left: 960px;
+  left: 960px; 
   background-color: rgba(245, 245, 220, 0.514);
   border-radius: 5px;
 }
+
 
 .login-page .navigation-footer {/* Footer */
   position: absolute;

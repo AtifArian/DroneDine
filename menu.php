@@ -20,7 +20,8 @@
         <h2>Restaurant Admin</h2>
         <ul>
             <li><a href="My_Restaurants.php">My Restaurants</a></li>
-            <li><a href="branches.php">Manage Branches</a></li>
+            <!-- <li><a href="branches.php?r_id=<?php echo $R_ID ?>">Manage Branches</a></li> -->
+            <li><a href="branches.php?r_id=<?php echo $_SESSION['R_ID']; ?>">Manage Branches</a></li>
             <li><a href="logout.php">Log Out</a></li>
             
         </ul>
@@ -47,21 +48,29 @@
             <?php
             if (isset($_POST['add'])) {
                 $stmt = $conn->prepare("INSERT INTO menu (Item_ID,Name,Category, Price,R_ID) VALUES ( NULL,?,?, ?, ?)");
-                $stmt->execute([$_POST['name'], $_POST['categ'], $_POST['price'],$R_ID]);
+                $stmt->execute([$_POST['name'], $_POST['categ'], $_POST['price'],$_SESSION['R_ID']]);
+                header("Location: menu.php?R_ID={$_SESSION['R_ID']}");
             }
 
             if (isset($_GET['delete'])) {
-                $stmt = $conn->prepare("DELETE FROM menu WHERE Item_ID = ? AND R_ID = ?");
-                $stmt->execute([$_GET['delete'], $R_ID]);
+                $item_id = intval($_GET['delete']);
+            
+                if ($item_id > 0){
+                    $stmt = $conn->prepare("DELETE FROM menu WHERE Item_ID = ? AND R_ID = ?");
+                    $stmt->execute([$item_id, $_SESSION["R_ID"]]);
+                    header("Location: menu.php?R_ID={$_SESSION['R_ID']}");
+                }
             }
 
-            $stmt = $conn->query("SELECT * FROM menu");
-            while ($row = $stmt->fetch_assoc()) {
+            $stmt = $conn->prepare("SELECT * FROM menu WHERE R_ID = ?");
+            $stmt->bind_param("i",$_SESSION['R_ID']);
+            $stmt->execute();
+            $a = $stmt->get_result();
+            while ($row = $a->fetch_assoc()) {
                 echo "<tr>
                         <td>{$row['Item_ID']}</td>
                         <td>{$row['Name']}</td>
                         <td>{$row['Price']}</td>
-                        
                         <td>
                             <a href='menu.php?delete={$row['Item_ID']}' onclick='return confirm(\"Are you sure?\")'>Delete</a>
                         </td>

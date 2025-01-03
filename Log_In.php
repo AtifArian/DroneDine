@@ -39,7 +39,7 @@
           </div>
           <div class="overlap-group-wrapper">
             <div class="overlap-group">
-              <p class="p">Description Bada Bing Bada Bong</p>
+              <p class="p">Hotdrop your food on your plate</p>
               <div class="text-wrapper-4">Drone Dine</div>
             </div>
           </div>

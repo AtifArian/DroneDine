@@ -15,7 +15,7 @@
     <div class="sidebar">
         <h2>Restaurant Admin</h2>
         <ul>
-            <li><a href="branches.php">Manage Branches</a></li>
+            <!-- <li><a href="branches.php">Manage Branches</a></li> -->
             <li><a href="logout.php">Log Out</a></li>
             
         </ul>
@@ -35,31 +35,50 @@
                 <th> Operation</th>         
             </tr>
             <?php
+            
             if (isset($_GET['delete'])) {
+                $stmt = $conn->prepare("DELETE FROM branch WHERE R_ID = ?");
+                $stmt->execute([$_GET['delete']]);
+
+                $stmt = $conn->prepare("DELETE FROM drone WHERE R_ID = ?");
+                $stmt->execute([$_GET['delete']]);
+
+                $stmt = $conn->prepare("DELETE FROM menu WHERE R_ID = ?");
+                $stmt->execute([$_GET['delete']]);
+
                 $stmt = $conn->prepare("DELETE FROM restaurant WHERE R_ID = ?");
                 $stmt->execute([$_GET['delete']]);
+                header("Locatin: My_Restaurants.php");
             }
-            $gpt = "SELECT r.R_ID as r_id, r.Name as name, b.Branch_loc as loc
+            $gpt = "
+            SELECT r.R_ID as r_id, r.Name as name, b.Branch_loc as loc
             FROM restaurant r
-            JOIN branch b ON r.R_ID = b.R_ID";
-            $stmt = $conn->query($gpt);
-
-            while ($row = $stmt->fetch_assoc()) {
+            JOIN branch b ON r.R_ID = b.R_ID
+            WHERE r.U_ID = ?";
+            $stmt = $conn->prepare($gpt);
+            $stmt->execute([$me]);
+            $r = $stmt->get_result();
+            //<a href='menu.php?R_ID={$row['r_id']}'>{$row['name']}</a>
+            while ($row = $r->fetch_assoc()) {
                 echo "<tr>
                         <td>
                             {$row['r_id']}
                         </td>
                         <td>
-                            <a href='menu.php'? R_ID={$row['r_id']}>{$row['name']}</a>
+
+                            <a href='menu.php?R_ID={$row['r_id']}'> {$row['name']} </a>
                         </td>
                         <td>
                             {$row['loc']}
                         </td>
                         <td>
-                            <a href='My_Restaurants.php?delete={$row['r_id']}' onclick='return confirm(\"Are you sure?\")'>Delete</a>
+                        <a href='My_Restaurants.php?delete={$row['r_id']} & loc={$row["loc"]}' onclick='return confirm(\"Are you sure?\\n This will DELETE ALL branches.\")'
+                        style='background-color: red; color: white; padding: 5px 10px; text-decoration: none; border-radius: 5px;'>
+                        Delete
+                        </a>
                         </td>
                       </tr>";
-            }
+            }//<a href='My_Restaurants.php?delete={$row['r_id']} & loc={$row["loc"]}' onclick='return confirm(\"Are you sure?\")'>Delete</a>
             ?>
         </table>
     </div>

@@ -1,6 +1,7 @@
 <?php
     include 'Database.php';
     session_start();
+    $me = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,17 +33,44 @@
                 <th>Actions</th>
             </tr>
             <?php
+            // if (isset($_POST['add'])) {
+            //     $stmt = $conn->prepare("INSERT INTO branch (R_ID, Branch_loc) VALUES (?, ?)");
+            //     $stmt->execute([$_GET['R_ID'],$_POST['location']]);
+            // }
             if (isset($_POST['add'])) {
-                $stmt = $conn->prepare("INSERT INTO branch (R_ID, Branch_loc) VALUES (?, ?)");
-                $stmt->execute([$_GET['R_ID'],$_POST['location']]);
+                $location = $_POST['location'];
+            
+                // Check if the branch already exists
+
+                // Prepare the query to check if the branch exists
+                $checkStmt = $conn->prepare("SELECT COUNT(*) FROM branch WHERE R_ID = ? AND Branch_loc = ?");
+                $checkStmt->execute([$_SESSION["R_ID"], $location]);
+
+                // Fetch the result
+                $branchExists = $checkStmt->get_result();
+                $check = $branchExists->fetch_assoc(); // Fetch the count
+
+                // Check if the count is greater than 0 (meaning the branch already exists)
+                if ($check['COUNT(*)'] > 0) {
+                    // Branch already exists
+                    echo "<p style='color:red;'>Branch already exists in this location!</p>";
+                }
+
+                 else {
+                    // Insert the branch as it doesn't exist
+                    $stmt = $conn->prepare("INSERT INTO branch (R_ID, Branch_loc) VALUES (?, ?)");
+                    $stmt->execute([$_SESSION["R_ID"], $location]);
+                    echo "<p style='color:green;'>Branch added successfully!</p>";
+                }
             }
+            
 
             if (isset($_GET['delete'])) {
                 $stmt = $conn->prepare("DELETE FROM branch WHERE R_ID = ? AND Branch_loc = ?");
-                $stmt->execute([$_GET['R_ID'],$_GET['delete']]);
+                $stmt->execute([$_SESSION['R_ID'],$_GET['delete']]);
             }
-
-            $stmt = $conn->query("SELECT * FROM branch WHERE R_ID=1");
+                $r_id = $_SESSION['R_ID'];
+            $stmt = $conn->query("SELECT * FROM branch WHERE R_ID=$r_id");
             while ($row = $stmt->fetch_assoc()) {
                 echo "<tr>
                         <td>{$row['Branch_loc']}</td>

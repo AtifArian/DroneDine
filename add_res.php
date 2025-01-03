@@ -14,8 +14,9 @@
         <h2>Restaurant Admin</h2>
         <ul>
             <li><a href="My_Restaurants.php">My Restaurants</a></li>
-            <li><a href="menu.php">Manage Menu</a></li>
-            <li><a href="branches.php">Manage Branches</a></li>
+            <!-- <li><a href="menu.php">Manage Menu</a></li> -->
+            <!-- <li><a href="branches.php">Manage Branches</a></li> -->
+            <li><a href="logout.php">Log Out</a></li>
         </ul>
     </div>
     <section class="res_signup">
@@ -27,7 +28,10 @@
           <input class="inputs" id="email" type="text" name="email" placeholder="E-mail" required><br><br>
           <label class="text3" for="phone">Phone</label><br>
           <input class="inputs" id="phone" type="text" name="phone" placeholder="Enter Phone No." required><br><br>
-          <button type="submit" name="create">Sign Up</button>
+          <label class="text3" for="loc">First Location</label><br>
+          <input class="inputs" id="loc" type="text" name="location" placeholder="Enter Location" required><br><br>
+
+          <button type="submit" name="create">Add Restaurant</button>
         </form>
     </section>
 
