@@ -1,5 +1,9 @@
 <?php
-  include('Database.php')
+  include('Database.php');
+  session_start();
+  if (!empty($_SESSION["error_msg"])){
+    echo $_SESSION["error_msg"];
+  }
 ?>
 
 <!DOCTYPE html>

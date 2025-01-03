@@ -19,10 +19,9 @@ body {
     font-size: large;
     background-color: #f8f9fa;
     margin: 0;
-    height: 100vh; /* Set the height of the body to the viewport height */
-    display: flex; /* Enable flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    height: 100vh; 
+    justify-content: center; 
+    align-items: center;
     text-align: center;
 }
 
@@ -31,8 +30,8 @@ body {
     padding: 50px;
     height: auto;
     width: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Adds a subtle shadow for aesthetics */
-    border-radius: 10px; /* Optional: Adds rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px;
 }
 
 form button {

@@ -29,10 +29,14 @@ body {
     justify-content: space-between;
     margin: 15px 0;
     padding: 10px;
-    background-color: #0096ffb8;
+    background-color: #6aa2ca;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.menu-item:hover {
+    background-color: #45a049;
+}
+
 .menu-item form {
     display: inline;
 }
@@ -59,7 +63,7 @@ body {
 .ment {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #0096ffb8; 
+    background-color: #6aa2ca; 
     color: white;               
     border: none;
     border-radius: 5px;
@@ -68,7 +72,7 @@ body {
 }
 
 .ment:hover {
-    background-color: #0096ffb8;
+    background-color: #28a745;
 }
 
 body {

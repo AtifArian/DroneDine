@@ -368,3 +368,42 @@
   white-space: nowrap;
 }
 
+.errorbox {
+  position: fixed; /* Make the box appear in a fixed position on the screen */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Offset to perfectly center */
+  background-color: white; /* Background color for the popup */
+  border: 1px solid #ccc; /* Border around the popup */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+  padding: 20px; /* Inner spacing */
+  width: 300px; /* Set a specific width */
+  text-align: center; /* Center the text inside */
+  z-index: 1000; /* Ensure it appears on top of other elements */
+}
+
+.errorbox .error {
+  margin-bottom: 20px; /* Add space below the error message */
+}
+
+.errorbox .error p {
+  color: red; /* Red color for the error text */
+  font-size: 16px; /* Font size for better visibility */
+  margin: 0; /* Remove default margin for the paragraph */
+}
+
+.errorbox button {
+  background-color: #007BFF; 
+  color: white; 
+  border: none; 
+  border-radius: 4px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.errorbox button:hover {
+  background-color: #0056b3; 
+}

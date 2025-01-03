@@ -6,21 +6,22 @@ $branchLoc = isset($_GET['branchLoc']) ? $_GET['branchLoc'] : 'None';
 $result = null;
 
 if ($branchLoc != 'None') {
-    $stmt = $conn->prepare($query =
-    "SELECT restaurant.R_ID as rid, restaurant.Name as rname
-    FROM restaurant
-    INNER JOIN branch ON restaurant.R_ID = branch.R_ID
-    WHERE branch.branch_loc = ?");
+    $query =
+            ("SELECT restaurant.R_ID as rid, restaurant.Name as rname
+            FROM restaurant
+            INNER JOIN branch ON restaurant.R_ID = branch.R_ID
+            WHERE branch.branch_loc = ?");
+    $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $branchLoc);
     $stmt->execute();
     $result = $stmt->get_result();
+
 }
 
 $branchQuery = "SELECT DISTINCT Branch_loc as loc FROM branch";
 $branchResult = $conn->query($branchQuery);
-
-//$selectedLocation = isset($_GET['branchLoc']) ? $_GET['branchLoc'] : 'None';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,14 +38,14 @@ $branchResult = $conn->query($branchQuery);
         <br>
         <select name="branchLoc" id="branchLoc">
             <option value="None" >None</option>
-            <?php if ($branchResult->num_rows > 0): ?>
-                <?php while ($row = $branchResult->fetch_assoc()): ?>
-                    <option value="<?= htmlspecialchars($row['loc']); ?>">
+            <?php
+                if ($branchResult->num_rows > 0):
+                    while ($row = $branchResult->fetch_assoc()):?>
+                    <option value="<?= htmlspecialchars($row['loc'])?>">
                         <?= htmlspecialchars($row['loc']); ?>
                     </option>
-                <?php endwhile; ?>
-            <?php endif; ?>
-            
+                    <?php endwhile; ?>
+                <?php endif; ?>   
         </select>
         <input type="submit" value="Search">
     </form>
@@ -53,7 +54,7 @@ $branchResult = $conn->query($branchQuery);
         <?php if ($result): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="result-item">
-                <a href="check.php?"r_id=<?php echo htmlspecialchars($row['rid']); ?>"">
+                <a href="check.php?r_id=<?php echo htmlspecialchars($row['rid']);?>">
                 <?php echo htmlspecialchars($row['rname']); ?>
                 </a>
                 </div>

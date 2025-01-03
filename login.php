@@ -2,6 +2,7 @@
 require_once('Database.php');
 session_start(); // Start the session
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email']) && isset($_POST['password'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
@@ -26,15 +27,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email']) && isset($_P
             elseif ($user['A_Flag'] == 0){
                 header("Location: SearchBox.php");
             }
-            exit();
-        } else {
-            echo "Wrong username or password";
-            header("Location: Log_In.php");
         }
-    } else {
-        echo "Wrong username or password";
+        else {
+        $_SESSION['error_msg'] = "Wrong password";
+        header("Location: Log_In.php");
+        }
+    }
+    else {
+        $_SESSION['error_msg'] = "Wrong Email Address";
         header("Location: Log_In.php");
     }
-
 }
 ?>

@@ -40,30 +40,22 @@
             if (isset($_POST['add'])) {
                 $location = $_POST['location'];
             
-                // Check if the branch already exists
-
-                // Prepare the query to check if the branch exists
                 $checkStmt = $conn->prepare("SELECT COUNT(*) FROM branch WHERE R_ID = ? AND Branch_loc = ?");
                 $checkStmt->execute([$_SESSION["R_ID"], $location]);
 
-                // Fetch the result
                 $branchExists = $checkStmt->get_result();
-                $check = $branchExists->fetch_assoc(); // Fetch the count
+                $check = $branchExists->fetch_assoc();
 
-                // Check if the count is greater than 0 (meaning the branch already exists)
+
                 if ($check['COUNT(*)'] > 0) {
-                    // Branch already exists
                     echo "<p style='color:red;'>Branch already exists in this location!</p>";
                 }
-
                  else {
-                    // Insert the branch as it doesn't exist
                     $stmt = $conn->prepare("INSERT INTO branch (R_ID, Branch_loc) VALUES (?, ?)");
                     $stmt->execute([$_SESSION["R_ID"], $location]);
                     echo "<p style='color:green;'>Branch added successfully!</p>";
                 }
             }
-            
 
             if (isset($_GET['delete'])) {
                 $stmt = $conn->prepare("DELETE FROM branch WHERE R_ID = ? AND Branch_loc = ?");

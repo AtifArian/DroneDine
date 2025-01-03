@@ -2,7 +2,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
     text-align: center;
-    /* padding-top: 100px;/ */
 }
 .search-box {
     width: 800px;
@@ -58,11 +57,7 @@ input[type="submit"]:hover {
     font-weight: bold;
     text-decoration: none;
 }
-.result-item .url {
-    color: #006621;
-    font-size: 14px;
-    margin: 4px 0;
-}
+
 
 select {
     width: 60%;

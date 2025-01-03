@@ -18,16 +18,18 @@
         <div class="text2">More Description</div>
       </div>
     </section>
-    <section class="signup-page">
+    <section class="reset-page">
         <form class="info" action="forgot.php" method="POST">
-          <h1 class="text4" >Reset Password</h1><br>
-          <label class="text3" for="Full Name">Full Name</label><br>
-          <input class="inputs" id="Full Name" type="text" name="name" placeholder="Full Name" required><br><br>
-          <label class="text3" for="email">Email</label><br>
-          <input class="inputs" id="email" type="text" name="email" placeholder="E-mail" required><br><br>
-          <label class="text3" for="phone">Phone</label><br>
-          <input class="inputs" id="phone" type="text" name="phone" placeholder="Enter Phone No." required><br><br>
-          <button type="submit" name="create">Show Password</button>
+          <div class="text4" >Reset Your Password</div><br>
+          <section class="all">
+            <label class="text3" for="Full Name">Full Name</label><br>
+            <input class="inputs" id="Full Name" type="text" name="name" placeholder="Full Name" required><br><br>
+            <label class="text3" for="email">Email</label><br>
+            <input class="inputs" id="email" type="text" name="email" placeholder="E-mail" required><br><br>
+            <label class="text3" for="phone">Phone</label><br>
+            <input class="inputs" id="phone" type="text" name="phone" placeholder="Enter Phone No." required><br><br>
+            <button type="submit" name="create">Reset Password</button>
+          </section>
         </form>
     </section>
 

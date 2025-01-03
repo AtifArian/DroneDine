@@ -4,7 +4,6 @@
     if (isset($_GET['R_ID'])) {
         $_SESSION['R_ID'] = $_GET['R_ID'];
         $R_ID = $_GET['R_ID'];
-        echo "You are working with restaurant ID: " . $R_ID;
     }
 ?>
 <!DOCTYPE html>
@@ -20,7 +19,6 @@
         <h2>Restaurant Admin</h2>
         <ul>
             <li><a href="My_Restaurants.php">My Restaurants</a></li>
-            <!-- <li><a href="branches.php?r_id=<?php echo $R_ID ?>">Manage Branches</a></li> -->
             <li><a href="branches.php?r_id=<?php echo $_SESSION['R_ID']; ?>">Manage Branches</a></li>
             <li><a href="logout.php">Log Out</a></li>
             

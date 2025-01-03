@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "Database.php";
+$my_id = $_GET["r_id"];
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -30,7 +31,7 @@ function renderCart() {
         }
     }
 }
-
+      
 $categoryQuery = "SELECT DISTINCT Category FROM menu";
 $categoryResult = $conn->query($categoryQuery);
 
@@ -38,24 +39,28 @@ $categoryResult = $conn->query($categoryQuery);
 $selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
 
 // Fetch menu items based on the selected category
-if ($selectedCategory === 'all') {
-    $menuQuery = "SELECT * FROM menu";
-    $menuStmt = $conn->prepare($menuQuery);
-} else {
-    $menuQuery = "SELECT * FROM menu WHERE Category = ?";
-    $menuStmt = $conn->prepare($menuQuery);
-    $menuStmt->bind_param("s", $selectedCategory);
-}
+// if ($selectedCategory === 'all') {
+//     $menuQuery = "SELECT * FROM menu";
+//     $menuStmt = $conn->prepare($menuQuery);
+// } else {
+//     $menuQuery = "SELECT * FROM menu WHERE Category = ?";
+//     $menuStmt = $conn->prepare($menuQuery);
+//     $menuStmt->bind_param("s", $selectedCategory);
+// }
 
-$menuStmt->execute();
-$menuResult = $menuStmt->get_result();
+// $menuStmt->execute();
+// $menuResult = $menuStmt->get_result();
 
 
-$menuQuery = "SELECT Category, Name, Price FROM menu";
-$menuResult = $conn->query($menuQuery);
+$menuQuery = "SELECT Category, Name, Price FROM menu WHERE R_ID = ?";
+$stmt=$conn->prepare($menuQuery);
+$stmt->bind_param("i",$menuQuery);
+$stmt->execute();
+$r = $stmt->get_result();
+
 $menuItems = [];
-if ($menuResult) {
-    while ($row = $menuResult->fetch_assoc()) {
+if ($r) {
+    while ($row = $r->fetch_assoc()) {
         $menuItems[$row['Category']][] = $row;
     }
 }
@@ -67,7 +72,7 @@ if ($menuResult) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="menu.css" />
+    <link rel="stylesheet" href="check.css" />
     <title>Menu</title>
 </head>
 <body>
@@ -86,19 +91,6 @@ if ($menuResult) {
     <div class="menu-box">
         <h1>MENU</h1>
     </div>
-    <form method="GET" action="">
-        <label for="category">Choose a category:</label>
-        <select id="category" name="category" onchange="this.form.submit()">
-            <option value="all">All</option>
-            <?php if ($categoryResult->num_rows > 0): ?>
-                <?php  while ($row = $categoryResult->fetch_assoc()): ?>
-                    <option value="<?php  echo htmlspecialchars($row['Category']); ?>">
-                        <?php echo htmlspecialchars($row['Category']); ?>
-                    </option>
-                <?php endwhile; ?>
-            <?php endif; ?>
-        </select>
-    </form>
 
     <div id="menu-container">
         <?php foreach ($menuItems as $category => $items): ?>
