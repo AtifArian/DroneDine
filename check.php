@@ -1,6 +1,9 @@
 <?php
 session_start();
 include "Database.php";
+$my_id = $_GET["r_id"];
+$my_res = $_GET["rname"];
+
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -20,7 +23,6 @@ if (isset($_POST['itemName']) && isset($_POST['quantity'])) {
     }
 }
 
-
 function renderCart() {
     if (empty($_SESSION['cart'])) {
         echo 'No items in cart.';
@@ -30,37 +32,7 @@ function renderCart() {
         }
     }
 }
-
-$categoryQuery = "SELECT DISTINCT Category FROM menu";
-$categoryResult = $conn->query($categoryQuery);
-
-// Get the selected category or default to 'all'
-$selectedCategory = isset($_GET['category']) ? $_GET['category'] : 'all';
-
-// Fetch menu items based on the selected category
-if ($selectedCategory === 'all') {
-    $menuQuery = "SELECT * FROM menu";
-    $menuStmt = $conn->prepare($menuQuery);
-} else {
-    $menuQuery = "SELECT * FROM menu WHERE Category = ?";
-    $menuStmt = $conn->prepare($menuQuery);
-    $menuStmt->bind_param("s", $selectedCategory);
-}
-
-$menuStmt->execute();
-$menuResult = $menuStmt->get_result();
-
-
-$menuQuery = "SELECT Category, Name, Price FROM menu";
-$menuResult = $conn->query($menuQuery);
-$menuItems = [];
-if ($menuResult) {
-    while ($row = $menuResult->fetch_assoc()) {
-        $menuItems[$row['Category']][] = $row;
-    }
-}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -84,47 +56,52 @@ if ($menuResult) {
     </form> 
 
     <div class="menu-box">
-        <h1>MENU</h1>
+        <div class='rname'><?php echo $my_res ?></div>
     </div>
-    <form method="GET" action="">
-        <label for="category">Choose a category:</label>
-        <select id="category" name="category" onchange="this.form.submit()">
-            <option value="all">All</option>
-            <?php if ($categoryResult->num_rows > 0): ?>
-                <?php  while ($row = $categoryResult->fetch_assoc()): ?>
-                    <option value="<?php  echo htmlspecialchars($row['Category']); ?>">
-                        <?php echo htmlspecialchars($row['Category']); ?>
-                    </option>
-                <?php endwhile; ?>
-            <?php endif; ?>
-        </select>
-    </form>
 
     <div id="menu-container">
-        <?php foreach ($menuItems as $category => $items): ?>
-            <div class="menu-section">
-                <h3><?php echo htmlspecialchars($category); ?></h3>
-                <?php foreach ($items as $item): ?>
-                    <div class="menu-item">
-                        <span>
-                            <?php echo htmlspecialchars($item['Name']); ?> - TK.<?php echo htmlspecialchars($item['Price']); ?>
-                        </span>
-                        <div>
-                            <form method="post" action="">
-                                <input type="hidden" name="itemName" value="<?php echo htmlspecialchars($item['Name']); ?>">
-                                <input type="hidden" name="quantity" value="-1">
-                                <button type="submit">-</button>
-                            </form>
-                            <form method="post" action="">
-                                <input type="hidden" name="itemName" value="<?php echo htmlspecialchars($item['Name']); ?>">
-                                <input type="hidden" name="quantity" value="1">
-                                <button type="submit">+</button>
-                            </form>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endforeach; ?>
+        <?php
+        $categoryQuery = "SELECT DISTINCT Category FROM menu WHERE R_ID = ?";
+        $categoryStmt = $conn->prepare($categoryQuery);
+        $categoryStmt->bind_param("i", $my_id);
+        $categoryStmt->execute();
+        $categoryResult = $categoryStmt->get_result();
+
+        while ($categoryRow = $categoryResult->fetch_assoc()) {
+            $category = $categoryRow['Category'];
+            echo "<div class='menu-section'>";
+            echo "<h3>" . htmlspecialchars($category) . "</h3>";
+
+            $menuQuery = "SELECT Name, Price FROM menu WHERE R_ID = ? AND Category = ?";
+            $menuStmt = $conn->prepare($menuQuery);
+            $menuStmt->bind_param("is", $my_id, $category);
+            $menuStmt->execute();
+            $menuResult = $menuStmt->get_result();
+
+            echo "<table>";
+            echo "<tr><th>Item</th><th>Price</th><th>Actions</th></tr>";
+            while ($menuRow = $menuResult->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . htmlspecialchars($menuRow['Name']) . "</td>";
+                echo "<td>TK. " . htmlspecialchars($menuRow['Price']) . "</td>";
+                echo "<td>
+                        <form method='post' action='' style='display:inline;'>
+                            <input type='hidden' name='itemName' value='" . htmlspecialchars($menuRow['Name']) . "'>
+                            <input type='hidden' name='quantity' value='-1'>
+                            <button type='submit'>-</button>
+                        </form>
+                        <form method='post' action='' style='display:inline;'>
+                            <input type='hidden' name='itemName' value='" . htmlspecialchars($menuRow['Name']) . "'>
+                            <input type='hidden' name='quantity' value='1'>
+                            <button type='submit'>+</button>
+                        </form>
+                    </td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            echo "</div>";
+        }
+        ?>
     </div>
 </body>
 </html>

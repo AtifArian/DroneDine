@@ -21,6 +21,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
+
+.menu-box .rname{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-large;
+    font-weight: 900;   
+}
 .menu-section {
     margin: 20px;
 }

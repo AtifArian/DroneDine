@@ -54,7 +54,7 @@ $branchResult = $conn->query($branchQuery);
         <?php if ($result): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="result-item">
-                <a href="check.php?r_id=<?php echo htmlspecialchars($row['rid']);?>">
+                <a href="check.php?r_id=<?php echo htmlspecialchars($row['rid']);?>&rname=<?php echo htmlspecialchars($row['rname']); ?>">
                 <?php echo htmlspecialchars($row['rname']); ?>
                 </a>
                 </div>
