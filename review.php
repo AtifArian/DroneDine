@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <?php
-                // Sample data for demonstration
+
                 $orderDetails = [
                     ["itemName" => "Burger", "quantity" => 2, "price" => 5.99],
                     ["itemName" => "Fries", "quantity" => 1, "price" => 2.99],

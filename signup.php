@@ -2,7 +2,7 @@
 include "Database.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
-    // Retrieve form data
+
     $name = htmlspecialchars(trim($_POST['name']));
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['pass']));
@@ -31,8 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create'])) {
         $C_Flag = true;
     }
 
-
-    // SQL query to insert data
     $sql = "INSERT INTO user (U_ID, Name, E_mail, Pass, Phone, Area, City, Street,C_ID,A_ID,C_Flag,A_Flag) VALUES (NULL, ?, ?, ?,? , ?, ?, ?, ?, ?, ?, ?)";
 
     try {

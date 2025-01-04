@@ -1,12 +1,11 @@
 <?php
 require_once('Database.php');
-session_start(); // Start the session
+session_start();
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email']) && isset($_POST['password'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    // Use prepared statements to prevent SQL injection
     $sql = "SELECT * FROM user WHERE E_mail = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
