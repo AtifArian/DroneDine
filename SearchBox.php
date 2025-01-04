@@ -32,8 +32,14 @@ $branchResult = $conn->query($branchQuery);
     <link rel="stylesheet" href="sb.css"/>
 </head>
 <body>
+<form class="log" action="logout.php">
+        <button class="out">
+            Log Out
+        </button>        
+</form>
 <div class="search-box">
-    <div class="logo">DroneDine</div>
+    <div class="logo">DroneDine</div><br><br>
+    <label class="locbox">Select Location</label>
     <form class="search-form" method="GET" action="">
         <br>
         <select name="branchLoc" id="branchLoc">
@@ -49,7 +55,7 @@ $branchResult = $conn->query($branchQuery);
         </select>
         <input type="submit" value="Search">
     </form>
-
+    <br><br>
     <div class="locations">
         <?php if ($result): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
@@ -61,6 +67,7 @@ $branchResult = $conn->query($branchQuery);
             <?php endwhile; ?>
         <?php endif; ?>
     </div>
+    
 </div>
 </body>
 </html>
